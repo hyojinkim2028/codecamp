@@ -1,17 +1,9 @@
 // 웹페이지에 바로 띄우기 위함
 const messageContainer = document.querySelector("#d-day-message");
 const container = document.querySelector("#d-day-container");
-//const storageItem = JSON.parse(localStorage.getItem("saved-item"));
 const savedDate = localStorage.getItem("saved-date");
 
 const intervalIdArr = []; // 타이머 초기화 시 함수 돌리기 위한 변수 선언
-
-container.style.display = "none";
-messageContainer.innerHTML = "<h3>d-day를 입력해 주세요.</h3>";
-
-const output = function () {
-  console.log("함수를 실행했어요.");
-};
 
 const dateFormMaker = function () {
   const inputYear = document.querySelector("#target-year-input").value;
@@ -91,7 +83,6 @@ const starter = function (targetDateInput) {
 //시작버튼을 새로 누르기 전까지는 기존 데이터를 기준으로 카운트 진행됨.
 
 const setClearInterval = function () {
-  localStorage.removeItem("saved-date");
   for (let i = 0; i < intervalIdArr.length; i++) {
     clearInterval(intervalIdArr[i]); // setInterval 아이디값 만큼 실행해야 종료됨.
   }
@@ -101,6 +92,7 @@ const resetTimer = function () {
   container.style.display = "none"; // dday 표시되는 숫자 없어짐
   messageContainer.innerHTML = "<h3>d-day를 입력해 주세요.</h3>";
   messageContainer.style.display = "flex"; // dday입력해주세요 표시됨
+  localStorage.removeItem("saved-date");
   setClearInterval();
 };
 
